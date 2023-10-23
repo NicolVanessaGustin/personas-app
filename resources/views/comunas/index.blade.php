@@ -32,6 +32,8 @@
                     <td><span> Action </span></td>
                 </tr>
                 @endforeach
+
+                
             </tbody>
         </table>
     </div>
