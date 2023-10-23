@@ -30,16 +30,28 @@
                 name="name" value="{{$comuna->comu_nomb}}">
             </div>
 
+            <form method="POST" action="{{ route('comunas.store') }}">
+    @csrf
+    <div class="form-group">
+        <label for="name">Nombre de la Comuna</label>
+        <input type="text" name="name" class="form-control" placeholder="Nombre de la comuna">
+    </div>
+    <!-- Otros campos y botones del formulario -->
+</form>
+
+
             <label for="municipality">Municipality:</label>
-            <select class="form-select" id="municipality" name="code" require>
-                <option selected disabled value="">Choose one...</option>
-                @foreach ($municipios as $municipio)
-                    @if ($municipio->muni_codi == $comuna->muni_codi)
-                    <option selected value="{{ $municipio->muni_codi}}">{{ $municipio->muni_nomb}}</option>
-                @else
-                    <option value="{{ $municipio->muni_codi}}">{{ $municipio->muni_nomb}}</option>
-            @endforeach
-            </select>
+            <select class="form-select" id="municipality" name="code" required>
+    <option selected disabled value="">Choose one...</option>
+        @foreach ($municipios as $municipio)
+        @csrf
+        @if ($municipio->muni_codi == $comuna->muni_codi)
+            <option selected value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
+        @else
+            <option value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
+        @endif
+    @endforeach
+</select>
             <div class="mb-3">
             <button type="submit" class="btn btn-primary">Update</button>
             <a href="{{ route('comunas.index')}}" class="btn btn-warning">Cancel</a>
